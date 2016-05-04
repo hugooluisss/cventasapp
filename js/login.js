@@ -37,11 +37,7 @@ function loadLogin(){
 						if (data.band == false){
 							alert("Tus datos no son válidos");
 						}else{
-							//Hay que verificar el perfil de usuario
-							if (data.datos.tipo == "1"){
-								alert("El rol de administrador no es válido en esta versión del sistema");
-							}else
-								location.reload(true);
+							location.reload(true);
 						}
 					}
 				});

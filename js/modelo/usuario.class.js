@@ -12,18 +12,14 @@ TUsuario = function(){
 				console.log("Los datos del usuario no son válidos");
 			}else{
 				var datos = data.datos;
-				if (datos.tipo == '' || datos.tipo == '1')
-					console.log("Acceso denegado a usuario de tipo administrador");
-				else{
-					var obj = new Object;
-					obj.identificador = datos.identificador;
-					obj.usuario = usuario;
-					obj.tipo = datos.tipo;
-					obj.nombre = datos.nombre;
-					obj.empresa = datos.idEmpresa;
-					
-					window.localStorage.setItem("sesion", JSON.stringify(obj));
-				}
+				var obj = new Object;
+				obj.identificador = datos.identificador;
+				obj.usuario = usuario;
+				obj.tipo = datos.tipo;
+				obj.nombre = datos.nombre;
+				obj.empresa = datos.idEmpresa;
+				
+				window.localStorage.setItem("sesion", JSON.stringify(obj));
 			}
 			
 			if (fn.after != undefined)
@@ -44,7 +40,7 @@ TUsuario = function(){
 			return false;
 		else{
 			var data = JSON.parse(this.sesion);
-			
+			console.log(this.sesion);
 			return data.tipo;
 		}
 	}
