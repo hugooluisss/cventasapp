@@ -42,7 +42,7 @@ $(document).ready(function(){
 				getPanelEspecialidades();
 			});
 			
-			getIndex();
+			//getIndex();
 		});
 	}
 
