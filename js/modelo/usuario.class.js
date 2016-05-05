@@ -3,6 +3,9 @@ TUsuario = function(){
 	this.sesion = window.localStorage.getItem("sesion");
 	
 	this.login = function(usuario, pass, fn){
+		if (fn.before != undefined)
+			fn.before();
+				
 		$.post(server + 'index.php?mod=clogin&action=login', {
 			"usuario": usuario,
 			"pass": pass,
@@ -17,7 +20,7 @@ TUsuario = function(){
 				obj.usuario = usuario;
 				obj.tipo = datos.tipo;
 				obj.nombre = datos.nombre;
-				obj.empresa = datos.idEmpresa;
+				obj.empresa = datos.empresa;
 				
 				window.localStorage.setItem("sesion", JSON.stringify(obj));
 			}
@@ -43,5 +46,17 @@ TUsuario = function(){
 			console.log(this.sesion);
 			return data.tipo;
 		}
+	}
+	
+	this.getNombre = function(){
+		var data = JSON.parse(this.sesion);
+			
+		return data.nombre;
+	}
+	
+	this.getEmpresa = function(){
+		var data = JSON.parse(this.sesion);
+			
+		return data.empresa;
 	}
 };

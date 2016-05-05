@@ -31,9 +31,11 @@ function loadLogin(){
 				
 				obj.login($("#txtUsuario").val(), $("#txtPass").val(), {
 					before: function(){
-						
+						$("#frmLogin [type=submit]").prop("disabled", true);
 					},
 					after: function(data){
+						$("#frmLogin [type=submit]").prop("disabled", false);
+						
 						if (data.band == false){
 							alert("Tus datos no son válidos");
 						}else{

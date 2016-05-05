@@ -3,46 +3,45 @@ $(document).ready(function(){
 	
 	if (usuario.isSesionIniciada()){
 		getPanel();
+		getMenu();
 	}else{
 		loadLogin();
 	}
 	
-	
-	
-	function getPanel(){
-		$.get("vistas/panel.html", function(resp){
-			$("#modulo").html(resp);
-						
-			//Opciones del menú
-			$("#menuPrincipal .salir").click(function(){
-				if(confirm("¿Seguro?")){
-					var obj = new TUsuario;
-					obj.logout({
-						after: function(){
-							location.reload(true);
-						}
-					});
-				}
-			});
+	function getMenu(){
+		$.get("vistas/menu.html", function(resp){
+			$("#menu").html(resp);
+			$("body").addClass("conmenu");
 			
 			$("#menuPrincipal a").click(function(){
 				$('#menuPrincipal').parent().removeClass("in");
 				$('#menuPrincipal').parent().attr("aria-expanded", false);
 			});
 			
-			$("#menuPrincipal .oficinas").click(function(){
-				getOficinas();
+			var objUsuario = new TUsuario;
+			
+			$("[vista=nombreUsuario]").html(objUsuario.getNombre());
+			
+			$("#menuPrincipal [liga=miEmpresa]").click(function(){
+				miEmpresaPanel();
 			});
 			
-			$("#menuPrincipal .miCuenta").click(function(){
-				getPanelMiCuentaAbogado();
+			//Opciones del menú
+			$("#menuPrincipal [liga=salir]").click(function(){
+				if(confirm("¿Seguro?")){
+					objUsuario.logout({
+						after: function(){
+							location.reload(true);
+						}
+					});
+				}
 			});
-			
-			$("#menuPrincipal .categorias").click(function(){
-				getPanelEspecialidades();
-			});
-			
-			//getIndex();
+		});
+	}
+	
+	function getPanel(){
+		$.get("vistas/panel.html", function(resp){
+			$("#modulo").html(resp);
 		});
 	}
 
