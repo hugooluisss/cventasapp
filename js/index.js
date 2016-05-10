@@ -1,6 +1,6 @@
+var usuario = new TUsuario;
+
 $(document).ready(function(){
-	var usuario = new TUsuario;
-	
 	if (usuario.isSesionIniciada()){
 		getPanel();
 		getMenu();
@@ -28,6 +28,9 @@ $(document).ready(function(){
 			
 			$("#menuPrincipal [liga=categorias]").click(function(){
 				categorias();
+			});
+			$("#menuPrincipal [liga=productos]").click(function(){
+				productos();
 			});
 			
 			//Opciones del menú
