@@ -26,6 +26,10 @@ $(document).ready(function(){
 				miEmpresaPanel();
 			});
 			
+			$("#menuPrincipal [liga=categorias]").click(function(){
+				categorias();
+			});
+			
 			//Opciones del menú
 			$("#menuPrincipal [liga=salir]").click(function(){
 				if(confirm("¿Seguro?")){
