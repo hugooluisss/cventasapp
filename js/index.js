@@ -41,6 +41,10 @@ $(document).ready(function(){
 				clientes();
 			});
 			
+			$("#menuPrincipal [liga=ventas]").click(function(){
+				ventas();
+			});
+			
 			//Opciones del menú
 			$("#menuPrincipal [liga=salir]").click(function(){
 				if(confirm("¿Seguro?")){
