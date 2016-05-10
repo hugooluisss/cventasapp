@@ -2,6 +2,57 @@ TUsuario = function(){
 	var self = this;
 	this.sesion = window.localStorage.getItem("sesion");
 	
+	this.add = function(id,	empresa, nombre, apellidos, email, perfil, fn){
+		if (fn.before !== undefined) fn.before();
+		
+		$.post(server + 'cusuarios', {
+				"action": "add",
+				"id": id,
+				"nombre": nombre,
+				"apellidos": apellidos, 
+				"email": email, 
+				"perfil": perfil, 
+				"empresa": empresa
+			}, function(data){
+				if (data.band == 'false')
+					console.log(data.mensaje);
+					
+				if (fn.after !== undefined)
+					fn.after(data);
+			}, "json");
+	};
+	
+	this.setPass = function(usuario, pass, fn){
+		if (fn.before !== undefined)
+			fn.before(data);
+			
+		$.post(server + 'cusuarios', {
+			"action": "setPass",
+			"usuario": usuario,
+			"pass": pass
+		}, function(data){
+			if (fn.after !== undefined)
+				fn.after(data);
+				
+			if (data.band == 'false')
+				console.log("Ocurrió un error al actualizar la contraseña del usuario");
+			
+		}, "json");
+	};
+	
+	this.del = function(usuario, fn){
+		$.post(server + 'cusuarios', {
+			"action": "del",
+			"usuario": usuario,
+		}, function(data){
+			if (fn.after != undefined)
+				fn.after(data);
+			if (data.band == 'false'){
+				alert("Ocurrió un error al eliminar al usuario");
+			}
+		}, "json");
+	};
+	
 	this.login = function(usuario, pass, fn){
 		if (fn.before != undefined)
 			fn.before();
@@ -58,5 +109,11 @@ TUsuario = function(){
 		var data = JSON.parse(this.sesion);
 			
 		return data.empresa;
+	}
+	
+	this.getId = function(){
+		var data = JSON.parse(this.sesion);
+			
+		return data.identificador;
 	}
 };

@@ -26,11 +26,19 @@ $(document).ready(function(){
 				miEmpresaPanel();
 			});
 			
+			$("#menuPrincipal [liga=usuarios]").click(function(){
+				usuarios();
+			});
+			
 			$("#menuPrincipal [liga=categorias]").click(function(){
 				categorias();
 			});
 			$("#menuPrincipal [liga=productos]").click(function(){
 				productos();
+			});
+			
+			$("#menuPrincipal [liga=clientes]").click(function(){
+				clientes();
 			});
 			
 			//Opciones del menú
