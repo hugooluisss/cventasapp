@@ -62,11 +62,11 @@
 			<br/>
 			<form role="form" id="frmAddProductos" class="form-horizontal" onsubmit="javascript: return false;">
 				<div class="form-group">
-					<label for="txtClave" class="col-sm-2 control-label">Producto</label>
-					<div class="col-sm-2">
+					<label for="txtClave" class="col-xs-12 col-sm-2 control-label">Producto</label>
+					<div class="col-xs-4 col-sm-2">
 						<input type="text" id="txtClave" name="txtClave" autofocus="true" class="form-control" autocomplete="false" placeholder="clave"/>
 					</div>
-					<div class="col-sm-5">
+					<div class="col-xs-8 col-sm-5">
 						<input type="text" id="txtDescripcion" name="txtDescripcion" autofocus="true" class="form-control" autocomplete="false" placeholder="Descripción"/>
 					</div>
 					<div class="col-sm-3">
@@ -79,18 +79,18 @@
 						<input type="text" id="txtCantidad" name="txtCantidad" autofocus="true" class="form-control" autocomplete="false" placeholder="Cantidad"/>
 					</div>
 					<label for="txtCantidad" class="col-sm-offset-2 col-sm-2 control-label">Precio Unitario</label>
-					<div class="col-sm-2">
+					<div class="col-xs-10 col-sm-2">
 						<input type="text" id="txtPrecio" name="txtPrecio" autofocus="true" class="form-control text-right" autocomplete="false" placeholder="Precio"/>
 					</div>
-					<div class="col-sm-1 text-right">
-						<button type="submit" id="btnReset" class="btn btn-default"><i class="fa fa-plus" aria-hidden="true"></i></button>
+					<div class="col-xs-2 col-sm-1 text-right">
+						<button type="submit" id="btnReset" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
 					</div>
 				</div>
 			</form>
-			<br/><br/>
+			<br/>
 			<hr />
 			<br/>
-			<div id="lstMovimiento"></div>
+			<div id="lstMovimiento" style="overflow-x: auto;"></div>
 		</div>
 	</div>
 </div>
@@ -113,6 +113,59 @@
 </div>
 
 
-{include file=$PAGE.rutaModulos|cat:"modulos/ventas/winClientes.tpl"}
-{include file=$PAGE.rutaModulos|cat:"modulos/ventas/winProductos.tpl"}
-{include file=$PAGE.rutaModulos|cat:"modulos/pagos/winPagos.tpl"}
+<div class="modal fade" id="winProductos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h1>Productos</h1>
+			</div>
+			<div class="modal-body">
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="winPagos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h1>Pagos</h1>
+			</div>
+			<div class="modal-body">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<form role="form" id="frmAddPago" class="form-horizontal" onsubmit="javascript: return false;">
+							<div class="form-group">
+								<label for="txtFecha" class="col-sm-2 control-label">Fecha</label>
+								<div class="col-sm-4">
+									<input type="text" id="txtFecha" name="txtFecha" autofocus="true" class="form-control" autocomplete="false" placeholder="Fecha" value=""/>
+									<div id="datepicker"></div>
+								</div>
+								<label for="txtMonto" class="col-sm-2 control-label">Monto</label>
+								<div class="col-sm-4">
+									<input type="text" id="txtMonto" name="txtMonto" autofocus="true" class="form-control text-right" autocomplete="false" placeholder="Monto" value="0.00"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-8 col-sm-4">
+									<input type="hidden" id="venta" />
+									<button type="submit" class="btn btn-danger btn-block" id="btnBuscarProductos">Guardar</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div id="lista"></div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			</div>
+		</div>
+	</div>
+</div>
