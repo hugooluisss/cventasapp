@@ -212,6 +212,10 @@ function ventas(){
 						pl.find("button[action=pagos]").attr("venta", venta.idVenta).click(function(){
 							$("#winPagos").modal();
 							$("#winPagos #venta").val($(this).attr("venta"));
+							var fecha = new Date;
+			
+							$("#winPagos #txtFecha").val(fecha.getFullYear() + '-' + (fecha.getMonth()+1) + '-' + fecha.getDay());
+							
 							listaPagos($(this).attr("venta"));
 						});
 						
@@ -330,9 +334,8 @@ function ventas(){
 		function listaPagos(venta){
 		    $.get("vistas/ventas/listaPagos.html", function(html){
 		    	$("#winPagos .modal-body #lista").html(html);
-				var plantilla = $("#winProductos .modal-body #lista").find("table tbody tr");
+				var plantilla = $("#winPagos .modal-body #lista").find("table tbody tr");
 				$("#winPagos .modal-body #lista").find("table tbody").html("");
-				
 		    	//{"venta": venta}
 		    	
 		    	$.post(server + 'cpagos', {
@@ -347,7 +350,7 @@ function ventas(){
 						pl.find("[campo=monto]").html(pago.monto);
 						pl.find("[campo=saldo]").html(pago.saldo);
 						
-						pl.find("button[action=seleccionar]").attr("pago", pago.idPago).click(function(){
+						pl.find("button[action=eliminar]").attr("pago", pago.idPago).click(function(){
 							if(confirm("¿Seguro?")){
 								var obj = new TPago;
 								obj.del($(this).attr("pago"), {
@@ -421,6 +424,9 @@ function ventas(){
 								listaPagos($("#frmAddPago #venta").val());
 								getLista();
 								$("#frmAddPago")[0].reset();
+								var fecha = new Date;
+			
+								$("#winPagos #txtFecha").val(fecha.getFullYear() + '-' + (fecha.getMonth()+1) + '-' + fecha.getDay());
 							}else{
 								alert("Upps... " + datos.mensaje);
 							}

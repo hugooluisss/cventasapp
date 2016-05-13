@@ -90,6 +90,7 @@ TVenta = function(){
 		$.post(server + 'cventas', {
 			"action": "historial",
 			"inicio": inicio,
+			"empresa": usuario.getEmpresa()
 		}, function(data){
 			if (data.band == 'false')
 				console.log("Ocurrio un error al obtener el historial de ventas");

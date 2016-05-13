@@ -1,1 +1,47 @@
-Hola
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h2><i class="fa fa-money" aria-hidden="true"></i> Total de ventas</h2>
+				</div>
+				<div class="panel-body" id="chart_div">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+			<div class="panel panel-warning">
+				<div class="panel-heading">
+					<h2><i class="fa fa-cc" aria-hidden="true"></i> Mi economía</h2>
+				</div>
+				<div class="panel-body">
+					En este <span campo="anio" /> has vendido <b>$<span campo="montoVentas" /></b> de lo cual has recuperado <b>$<span campo="pagosVentas" /></b>, Intenta recuperar <b>$<span campo="saldoVentas" /></b>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-md-4">
+			<div class="panel panel-warning">
+				<div class="panel-heading">
+					<h2><i class="fa fa-check" aria-hidden="true"></i> Pedidos sin entregar</h2>
+				</div>
+				<div class="panel-body">
+					<span campo="mensajePedidos" />
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-md-4">
+			<div class="panel panel-warning">
+				<div class="panel-heading">
+					<h2><i class="fa fa-users" aria-hidden="true"></i> Clientes</h2>
+				</div>
+				<div class="panel-body">
+					Tienes un total de <span campo="totalClientes" /> clientes registrados en la plataforma
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
