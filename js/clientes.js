@@ -110,6 +110,27 @@ function clientes(){
 							}
 						});
 						
+						pl.find("button[action=estado]").attr("cliente", cliente.idCliente).click(function(){
+							$("#winVentas").modal();
+							
+							$.post(server + "estadoCuenta", {
+								"cliente": $(this).attr("cliente")
+							}, function(html){
+								$("#winVentas").find(".modal-body").html(html);
+								
+								$("#tblEstado").DataTable({
+									"responsive": true,
+									"language": espaniol,
+									"paging": true,
+									"lengthChange": false,
+									"ordering": true,
+									"info": true,
+									"autoWidth": true
+								});
+			
+							});
+						});
+						
 						$("#dvLista table tbody").append(pl);
 					});
 					
