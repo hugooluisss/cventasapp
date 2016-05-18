@@ -13,6 +13,8 @@ $(document).ready(function(){
 			$("#menu").html(resp);
 			$("body").addClass("conmenu");
 			
+			$("#fotoPerfil").attr("src", server + "repositorio/imagenesUsuarios/img_" + usuario.getId() + ".jpg?" + Math.random());
+			
 			$("#menuPrincipal a").click(function(){
 				$('#menuPrincipal').parent().removeClass("in");
 				$('#menuPrincipal').parent().attr("aria-expanded", false);
@@ -57,6 +59,27 @@ $(document).ready(function(){
 							location.reload(true);
 						}
 					});
+				}
+			});
+			
+			
+			$("#fotoPerfil").click(function(){
+				if (navigator.camera != undefined){
+					navigator.camera.getPicture(function(imageData) {
+							$("#fotoPerfil").attr("src", imageData);
+							subirFotoPerfil(imageData);
+						}, function(message){
+							alert("Ocurrió un error al subir la imagen");
+					        setTimeout(function() {
+					        	$("#mensajes").fadeOut(1500).removeClass("alert-danger");
+					        }, 5000);
+						}, { 
+							quality: 50,
+							destinationType: navigator.camera.DestinationType.FILE_URI,
+							sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+						});
+				}else{
+					console.log("No se pudo inicializar la cámara");
 				}
 			});
 		});
@@ -106,8 +129,34 @@ $(document).ready(function(){
 					});
 				}
 			});
-
 		});
 	}
+	
+	function subirFotoPerfil(imageURI){
+		var usuario = new TUsuario;
+		var options = new FileUploadOptions();
+		
+		options.fileKey = "file";
+		options.fileName = imageURI.substr(imageURI.lastIndexOf('/')+1);
+		options.mimeType = "image/jpeg";
+		
+		var params = new Object();
+		params.identificador = usuario.getIdentificador();
+		
+		options.params = params;
+		
+		var ft = new FileTransfer();
+		ft.upload(imageURI, encodeURI(server + "?mod=cusuarios&action=uploadImagenPerfil"), function(r){
+				console.log("Code = " + r.responseCode);
+		        console.log("Response = " + r.response);
+		        console.log("Sent = " + r.bytesSent);
+		        
+		        alert("La fotografía se cargó con éxito");
+			}, function(error){
+		        alert("No se pudo subir la imagen al servidor " + error.target);
 
+			    console.log("upload error source " + error.source);
+			    console.log("upload error target " + error.target);
+			}, options);
+	}
 });
