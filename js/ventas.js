@@ -219,6 +219,24 @@ function ventas(){
 							listaPagos($(this).attr("venta"));
 						});
 						
+						pl.find(".entregados").val(venta.entregados).attr("venta", venta.idVenta);
+						pl.find(".entregados").change(function(){
+							var el = $(this);
+							var venta = new TVenta;
+							
+							venta.changeEntregado(el.attr("venta"), el.val(), {
+								before: function(){
+									el.prop("disabled", true);
+								},
+								after: function(resp){
+									el.prop("disabled", false);
+									
+									if (resp.band == "false")
+										alert("No se pudo actualizar el estado del pedido");
+								}
+							});
+						});
+						
 						$("#dvLista table tbody").append(pl);
 					});
 
