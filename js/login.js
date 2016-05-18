@@ -47,9 +47,5 @@ function loadLogin(){
 				});
 			}
 		});
-		
-		$("#btnSendRegistro").click(function(){
-			panelRegistro();
-		});
 	});
 };
