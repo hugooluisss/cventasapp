@@ -142,7 +142,7 @@ $(document).ready(function(){
 		options.mimeType = "image/jpeg";
 		
 		var params = new Object();
-		params.identificador = usuario.getIdentificador();
+		params.identificador = usuario.getId();
 		
 		options.params = params;
 		
