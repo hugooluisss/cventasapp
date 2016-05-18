@@ -112,6 +112,8 @@ TUsuario = function(){
 	}
 	
 	this.getId = function(){
+		if (this.sesion == '' || this.sesion == undefined)
+			return '';
 		var data = JSON.parse(this.sesion);
 			
 		return data.identificador;
