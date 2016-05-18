@@ -75,7 +75,9 @@ $(document).ready(function(){
 					        }, 5000);
 						}, { 
 							quality: 50,
-							destinationType: Camera.DestinationType.FILE_URI
+							destinationType: Camera.DestinationType.FILE_URI,
+							targetWidth: 250,
+							targetHeight: 250
 						});
 				}else{
 					console.log("No se pudo inicializar la cámara");
