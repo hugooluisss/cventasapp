@@ -15,7 +15,7 @@
 		-->  
 		<preference name="permissions"        value="none"/>  
 		<!-- Customize your app and platform with the preference element. -->  
-		<preference name="phonegap-version"      value="cli-5.1.1" />     <!-- all: current version of PhoneGap -->  
+		<preference name="phonegap-version"      value="cli-5.2.0" />     <!-- all: current version of PhoneGap -->  
 		<preference name="orientation"        value="default" />    <!-- all: default means both landscape and portrait are enabled -->  
 		<preference name="target-device"       value="universal" />   <!-- all: possible values handset, tablet, or universal -->  
 		<preference name="fullscreen"         value="true" />      <!-- all: hides the status bar at the top of the screen -->  
@@ -35,7 +35,7 @@
 		<!--<gap:plugin name="org.apache.cordova.battery-status" />  
 		<gap:plugin name="org.apache.cordova.camera" />
 		<gap:plugin name="org.apache.cordova.inappbrowser" /> -->
-		<plugin name="org.wbt11a.nativecamera" spec="0.1.4" source="pgb" />
+		<plugin name="cordova-plugin-camera"/>
 		<!-- Third party plugins -->  
 		<!-- A list of available plugins are available at https://build.phonegap.com/plugins -->  
 		
