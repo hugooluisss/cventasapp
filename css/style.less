@@ -5,6 +5,28 @@
  * Code licensed under the Apache License v2.0.
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
+ 
+@media(min-width:768px) {
+    body.conmenu{
+        padding-top: 70px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+    }
+
+    .navbar-brand {
+        padding: 0px 0;
+    }
+    nav.navbar-fixed-top .nav {
+	    padding: 0px 0;
+	}
+    
+    img#fotoPerfil{
+	    width: 150px;
+	    height: 150px;
+    }
+    
+    #menu{
+	    margin-bottom: 50px;
+    }
+}
 
 body.conmenu {
     padding-top: 70px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
@@ -13,7 +35,7 @@ body.conmenu {
 nav{
 	&.navbar-fixed-top{
 		.nav {
-	    	padding: 15px 0;
+	    	padding: 0px 0;
 	    }
 	}
 	
@@ -67,12 +89,7 @@ nav{
 	color: red;
 }
 
-@media(min-width:768px) {
-    body.conmenu{
-        padding-top: 70px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
-    }
-
-    .navbar-fixed-top .navbar-brand {
-        padding: 15px 0;
-    }
+img#fotoPerfil{
+	width: 50px;
+	height: 50px;
 }

@@ -157,6 +157,18 @@ function ventas(){
 						"info": true,
 						"autoWidth": true
 					});
+					
+					$(".alert [campo=saldoCliente]").html(datos.saldoCliente);
+					
+					if (datos.limiteCliente > 0){
+						$(".alert:first").append(" y tiene un límite de crédito de $ " + datos.limiteCliente + ". ");
+						
+						if (datos.sobrepaso > 0)
+							$(".alert:first").append($("<span />",{
+								"class": "error",
+								"html": "El cliente sobrepasó su límite por $ " + datos.sobrepaso
+							}));
+					}
 				}, "json");
 			});
 		}

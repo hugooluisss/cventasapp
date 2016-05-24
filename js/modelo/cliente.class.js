@@ -1,7 +1,7 @@
 TCliente = function(){
 	var self = this;
 	
-	this.add = function(id, nombre, sexo, telefono, email, direccion, fn){
+	this.add = function(id, nombre, sexo, telefono, email, direccion, limite, fn){
 		if (fn.before !== undefined) fn.before();
 		
 		$.post(server + 'cclientes', {
@@ -12,7 +12,8 @@ TCliente = function(){
 				"telefono": telefono,
 				"email": email,
 				"direccion": direccion,
-				"empresa": usuario.getEmpresa()
+				"empresa": usuario.getEmpresa(),
+				"limite": limite
 			}, function(data) {
 				if (data.band == 'false')
 					console.log(data.mensaje == ''?"Upps. Ocurrió un error al agregar al cliente":data.mensaje);
