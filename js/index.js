@@ -79,8 +79,7 @@ $(document).ready(function(){
 							quality: 50,
 							destinationType: Camera.DestinationType.FILE_URI,
 							targetWidth: 250,
-							targetHeight: 250,
-							allowEdit: true
+							targetHeight: 250
 						});
 				}else{
 					console.log("No se pudo inicializar la cámara");
