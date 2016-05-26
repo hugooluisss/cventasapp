@@ -129,6 +129,25 @@ function clientes(){
 							}, function(html){
 								$("#winVentas").find(".modal-body").html(html);
 								
+								$("#btnSendEstadoCuenta").click(function(){
+									if (confirm("Se enviará el estado de cuenta del cliente a su correo electrónico, ¿seguro?")){
+										cliente = new TCliente;
+										
+										cliente.sendEstadoCuenta($("#btnSendEstadoCuenta").attr("cliente"), {
+											before: function(){
+												$("#btnSendEstadoCuenta").prop("disabled", true);
+											}, after: function(resp){
+												$("#btnSendEstadoCuenta").prop("disabled", false);
+												
+												if (resp.band == true)
+													alert("El estado de cuenta se envió con éxito");
+												else
+													alert("Ocurrió un error al enviar el estado de cuenta");
+											}
+										});
+									}
+								});
+								
 								$("#tblEstado").DataTable({
 									"responsive": true,
 									"language": espaniol,

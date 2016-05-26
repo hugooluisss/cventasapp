@@ -28,7 +28,8 @@ TCliente = function(){
 		
 		$.post(server + 'cclientes', {
 			"action": "del",
-			"id": cliente,
+			"empresa": usuario.getEmpresa(),
+			"id": cliente
 		}, function(data){
 			if (data.band == 'false')
 				console.log("Ocurrió un error al eliminar al cliente");
@@ -36,4 +37,19 @@ TCliente = function(){
 			if (fn.after !== undefined) fn.after(data);
 		}, "json");
 	};
+	
+	this.sendEstadoCuenta = function(pago, fn){
+		if (fn.before !== undefined) fn.before();
+		
+		$.post(server + 'cclientes', {
+			"action": "enviarEstadoCuenta",
+			"id": pago,
+			"usuario": usuario.getId()
+		}, function(data){
+			if (data.band == false)
+				console.log("Ocurrió un error al enviar el estado de cuenta");
+			
+			if (fn.after !== undefined) fn.after(data);
+		}, "json");
+	}
 };

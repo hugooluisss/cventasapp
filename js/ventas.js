@@ -380,7 +380,7 @@ function ventas(){
 						pl.find("[campo=monto]").html(pago.monto);
 						pl.find("[campo=saldo]").html(pago.saldo);
 						
-						pl.find("button[action=eliminar]").attr("pago", pago.idPago).click(function(){
+						pl.find("button[action=eliminarPago]").attr("pago", pago.idPago).click(function(){
 							if(confirm("¿Seguro?")){
 								var obj = new TPago;
 								obj.del($(this).attr("pago"), {
@@ -394,6 +394,24 @@ function ventas(){
 									}
 								});
 							}
+						});
+						
+						pl.find("button[action=enviarComprobante]").attr("pago", pago.idPago).click(function(){
+							pago = new TPago;
+							var el = $(this);
+							
+							pago.sendComprobante(el.attr("pago"), {
+								before: function(){
+									el.prop("disabled", true);
+								}, after: function(resp){
+									el.prop("disabled", false);
+									
+									if (resp.band == true)
+										alert("El comprobante se envió con éxito");
+									else
+										alert("Ocurrió un error al enviar el comprobante");
+								}
+							});
 						});
 						
 						$("#winPagos .modal-body #lista table tbody").append(pl);
